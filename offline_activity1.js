@@ -14,7 +14,6 @@ function increment() {
         if (!(isNaN(num))) {
             num++;
             document.frmCalc.txtNumber.value = num;
-            calc = "increment"
         }
 }
 //The following function decreases the value of displayed number by 1.
@@ -47,14 +46,24 @@ function subtract() {
         }
 }
 
-function mul() {
+function multiply() {
     var num = parseFloat(document.frmCalc.txtNumber.value);
         if (!(isNaN(num))) {
             prevCalc = num;
             document.frmCalc.txtNumber.value = "";
-            calc = "Mul";
+            calc = "Multiply";
         }
 }
+
+function div() {
+    var num = parseFloat(document.frmCalc.txtNumber.value);
+        if (!(isNaN(num))) {
+            prevCalc = num;
+            document.frmCalc.txtNumber.value = "";
+            calc = "Div";
+        }
+}
+
 function power2() {
     var num = parseFloat(document.frmCalc.txtNumber.value);
         if (!(isNaN(num))) {
@@ -66,25 +75,21 @@ function power2() {
 function power() {
     var num = parseFloat(document.frmCalc.txtNumber.value);
         if (!(isNaN(num))) {
-            num = num**2;
+            prevCalc = num;
+            document.frmCalc.txtNumber.value = "";
+            calc = "Power";
+        }
+}
+
+function sqrt() {
+    var num = parseFloat(document.frmCalc.txtNumber.value);
+        if (!(isNaN(num))) {
+            num = Math.sqrt(num);
             document.frmCalc.txtNumber.value = num;
         }
 }
 
-// function sqrt() {
-//     var num = parseFloat(document.frmCalc.txtNumber.value);
-//         if (!(isNaN(num))) {
-//             num = Math.sqrt(num);
-//             document.frmCalc.txtNumber.value = num;
-//         }
-// }
-// function sqrt() {
-//     var num = parseFloat(document.frmCalc.txtNumber.value);
-//         if (!(isNaN(num))) {
-//             num = Math.sqrt;
-//             document.frmCalc.txtNumber.value = num;
-//         }
-// }
+
 function floor() {
     var num = parseFloat(document.frmCalc.txtNumber.value);
         if (!(isNaN(num))) {
@@ -95,7 +100,7 @@ function floor() {
 function cell() {
     var num = parseFloat(document.frmCalc.txtNumber.value);
         if (!(isNaN(num))) {
-            num = Math.cell(num);
+            num = Math.ceil(num);
             document.frmCalc.txtNumber.value = num;
         }
 }
@@ -110,32 +115,23 @@ function calculate() {
                 document.frmCalc.txtNumber.value = total;
             }
             else if (calc == "Subtract"){
-                    var total = prevCalc - num;
+                var total = prevCalc - num;
                     document.frmCalc.txtNumber.value = total;
                 }
-            else if (calc == "Mul"){
-                var total = prevCalc + num;
+            else if (calc == "Multiply"){
+                var total = prevCalc * num;
                 document.frmCalc.txtNumber.value = total;
             }
-            else if (calc == "Mul"){
-                var total = prevCalc + num;
+            else if (calc == "Div"){
+                var total = prevCalc / num;
                 document.frmCalc.txtNumber.value = total;
             }
-            else if (calc == "sqrt"){
-                var total = prevCalc + num;
-                document.frmCalc.txtNumber.value = total;
-            }
-            else if (calc == "cell"){
-                var total = prevCalc + num;
-                document.frmCalc.txtNumber.value = total;
-            }
-            else if (calc == "floor"){
-                var total = prevCalc + num;
+            else if (calc == "Power"){
+                var total = prevCalc ** num;
                 document.frmCalc.txtNumber.value = total;
             }
     }    
 }
-
 function clear() {
 	document.frmCalc.txtNumber.value = "";
 	prevCalc = 0;
